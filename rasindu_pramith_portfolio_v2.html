@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rasindu Pramith — Applied Statistics undergraduate at the University of Colombo building practical solutions through statistical modelling, mathematical optimization, data analytics, and programming." />
+  <meta name="theme-color" content="#020617" />
+  <title>Rasindu Pramith | Applied Statistics & Data Analytics</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    .skill-pill { display: inline-flex; align-items: center; padding: 0.42rem 0.7rem; border-radius: 9999px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(51, 65, 85, 0.85); color: #cbd5e1; font-size: 0.72rem; font-weight: 600; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    ::selection {
+      background: rgba(99, 102, 241, 0.75);
+      color: #fff;
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.34) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.34) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.55) 50%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.55) 50%, transparent 100%);
+    }
+
+    .section-glow {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .section-glow::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.08);
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .metric-card,
+    .project-card,
+    .expertise-card,
+    .timeline-card {
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .metric-card:hover,
+    .project-card:hover,
+    .expertise-card:hover,
+    .timeline-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover {
+      box-shadow: 0 18px 55px rgba(15, 23, 42, 0.35);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #818cf8);
+      transition: width 180ms ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .soft-border {
+      border-color: rgba(51, 65, 85, 0.72);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #22d3ee 0%, #38bdf8 35%, #818cf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased">
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+  <header class="fixed top-0 left-0 w-full bg-slate-950/82 backdrop-blur-xl border-b border-slate-800/80 z-50">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="text-lg sm:text-xl font-extrabold tracking-tight gradient-text">
+        Rasindu Pramith
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300" aria-label="Primary navigation">
+        <a href="#about" class="nav-link hover:text-cyan-400 transition-colors">About</a>
+        <a href="#expertise" class="nav-link hover:text-cyan-400 transition-colors">Expertise</a>
+        <a href="#projects" class="nav-link hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="#education" class="nav-link hover:text-cyan-400 transition-colors">Education</a>
+        <a href="#contact" class="nav-link hover:text-cyan-400 transition-colors">Contact</a>
+      </nav>
+
+      <div class="hidden sm:flex items-center gap-3">
+        <a
+          href="https://github.com/rasindupramith-oss"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-1.5 rounded-full font-semibold transition"
+        >
+          GitHub ↗
+        </a>
+        <a
+          href="https://www.linkedin.com/in/rasindu-pramith"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-1.5 rounded-full font-semibold transition"
+        >
+          LinkedIn ↗
+        </a>
+      </div>
+
+      <button
+        id="menuButton"
+        type="button"
+        class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-800 bg-slate-900 text-slate-300"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        aria-label="Open navigation menu"
+      >
+        <span class="text-lg">☰</span>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-slate-800/80 bg-slate-950/95">
+      <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-3 text-sm text-slate-300" aria-label="Mobile navigation">
+        <a href="#about" class="mobile-nav-link py-2">About</a>
+        <a href="#expertise" class="mobile-nav-link py-2">Expertise</a>
+        <a href="#projects" class="mobile-nav-link py-2">Projects</a>
+        <a href="#education" class="mobile-nav-link py-2">Education</a>
+        <a href="#contact" class="mobile-nav-link py-2">Contact</a>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="https://github.com/rasindupramith-oss" target="_blank" rel="noopener noreferrer" class="text-xs bg-slate-800 px-3.5 py-2 rounded-full">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/rasindu-pramith" target="_blank" rel="noopener noreferrer" class="text-xs bg-indigo-600 px-3.5 py-2 rounded-full">LinkedIn ↗</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+  <main id="top">
+
+    <section class="relative overflow-hidden pt-32 sm:pt-36 pb-16 sm:pb-20 px-5 sm:px-6">
+      <div class="hero-grid absolute inset-0 opacity-60"></div>
+      <div class="absolute -top-28 -right-24 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute top-40 -left-28 w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
+
+      <div class="relative max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 lg:gap-20">
+        <div class="flex-1 w-full text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            BSc (Hons) in Applied Statistics • University of Colombo
+          </div>
+
+          <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.05] text-white">
+            Turning Data, Mathematics &amp; Code into
+            <span class="gradient-text"> Practical Solutions.</span>
+          </h1>
+
+          <p class="mt-6 text-slate-400 text-base sm:text-lg lg:text-xl max-w-2xl leading-relaxed mx-auto md:mx-0">
+            Applied Statistics undergraduate combining statistical modelling, mathematical optimization, and programming to solve real-world problems and turn analysis into usable tools.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-3.5 pt-8">
+            <a
+              href="#projects"
+              class="px-5 sm:px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-lg shadow-indigo-500/20"
+            >
+              View Projects →
+            </a>
+
+            <a
+              href="https://sri-lanka-flood-risk-engine.streamlit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 sm:px-6 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-cyan-500/30 font-semibold text-sm transition flex items-center gap-2"
+            >
+              <span>🌧️</span> Try LankaFlood-AI ↗
+            </a>
+
+            <a
+              href="https://github.com/rasindupramith-oss"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 sm:px-6 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-700 font-semibold text-sm transition"
+            >
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="relative shrink-0">
+          <div class="absolute inset-0 rounded-[2rem] bg-cyan-400/10 blur-2xl"></div>
+          <div class="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-[2rem] overflow-hidden p-1 bg-gradient-to-tr from-indigo-500 via-sky-400 to-cyan-300 shadow-2xl shadow-indigo-500/20">
+            <img
+              src="https://github.com/rasindupramith-oss.png"
+              alt="Rasindu Pramith"
+              class="w-full h-full object-cover rounded-[1.75rem]"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         IMPACT SNAPSHOT
+    ========================================================== -->
+    <section class="px-5 sm:px-6 pb-16">
+      <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="metric-card p-5 rounded-2xl bg-slate-900/75 border soft-border">
+          <div class="text-2xl sm:text-3xl font-extrabold gradient-text">7+</div>
+          <div class="mt-1 text-xs sm:text-sm text-slate-400">Featured Projects</div>
+        </div>
+
+        <div class="metric-card p-5 rounded-2xl bg-slate-900/75 border soft-border">
+          <div class="text-2xl sm:text-3xl font-extrabold gradient-text">25</div>
+          <div class="mt-1 text-xs sm:text-sm text-slate-400">Sri Lankan Districts Modelled</div>
+        </div>
+
+        <div class="metric-card p-5 rounded-2xl bg-slate-900/75 border soft-border">
+          <div class="text-2xl sm:text-3xl font-extrabold gradient-text">91K+</div>
+          <div class="mt-1 text-xs sm:text-sm text-slate-400">District-Days Analysed</div>
+        </div>
+
+        <div class="metric-card p-5 rounded-2xl bg-slate-900/75 border soft-border">
+          <div class="text-2xl sm:text-3xl font-extrabold gradient-text">3</div>
+          <div class="mt-1 text-xs sm:text-sm text-slate-400">Live Interactive Apps</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================== -->
+    <section id="about" class="section-glow py-20 sm:py-24 bg-slate-900/45 border-y border-slate-800/70">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6">
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 lg:gap-16 items-start">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">About Me</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white">
+              Statistics that move beyond the classroom.
+            </h2>
+
+            <div class="mt-6 space-y-5 text-slate-400 leading-8">
+              <p>
+                I’m an <span class="text-slate-200 font-semibold">Applied Statistics undergraduate at the Faculty of Science, University of Colombo</span>, interested in turning statistical and mathematical methods into practical solutions for real-world problems.
+              </p>
+
+              <p>
+                My work sits at the intersection of <span class="text-slate-200 font-semibold">statistical modelling, optimization, data analytics, and software development</span>. I enjoy taking a problem, understanding the underlying data, building a quantitative model, validating the results, and then turning the analysis into something people can actually use.
+              </p>
+
+              <p>
+                My projects span <span class="text-slate-200">extreme-value modelling, time-series forecasting, predictive analytics, route optimization, financial simulation, sports analytics, and interactive data visualization</span>.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-3xl bg-slate-950/75 border border-slate-800 p-6 sm:p-7">
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-indigo-400">How I Work</p>
+
+            <div class="mt-6 space-y-5">
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">01</div>
+                <div>
+                  <h3 class="text-sm font-bold text-white">Understand</h3>
+                  <p class="mt-1 text-sm text-slate-400 leading-6">Frame the real-world problem and identify the data and assumptions required.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">02</div>
+                <div>
+                  <h3 class="text-sm font-bold text-white">Model</h3>
+                  <p class="mt-1 text-sm text-slate-400 leading-6">Apply the statistical or mathematical method that best matches the problem.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">03</div>
+                <div>
+                  <h3 class="text-sm font-bold text-white">Validate</h3>
+                  <p class="mt-1 text-sm text-slate-400 leading-6">Evaluate performance, test assumptions, and inspect what the model gets wrong.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">04</div>
+                <div>
+                  <h3 class="text-sm font-bold text-white">Deploy</h3>
+                  <p class="mt-1 text-sm text-slate-400 leading-6">Turn the analysis into a dashboard, interactive tool, or decision-support application.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EXPERTISE
+    ========================================================== -->
+    <section id="expertise" class="py-20 sm:py-24 px-5 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Core Expertise</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white">Methods, tools, and ways of working.</h2>
+          <p class="mt-4 text-slate-400 leading-7">
+            A practical toolkit built around quantitative reasoning, modelling, programming, and clear communication.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="expertise-card p-6 rounded-2xl bg-slate-900/70 border soft-border">
+            <div class="text-2xl">📊</div>
+            <h3 class="mt-4 font-bold text-white">Statistical Modelling</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-6">
+              Regression • Statistical Inference • Time Series • ARIMA • Extreme Value Theory
+            </p>
+          </div>
+
+          <div class="expertise-card p-6 rounded-2xl bg-slate-900/70 border soft-border">
+            <div class="text-2xl">🧮</div>
+            <h3 class="mt-4 font-bold text-white">Mathematical Optimization</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-6">
+              Linear Programming • Integer Programming • TSP • Combinatorial Optimization
+            </p>
+          </div>
+
+          <div class="expertise-card p-6 rounded-2xl bg-slate-900/70 border soft-border">
+            <div class="text-2xl">💻</div>
+            <h3 class="mt-4 font-bold text-white">Data &amp; Programming</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-6">
+              Python • R • SQL • Java • C++ • Pandas • NumPy • SciPy • scikit-learn
+            </p>
+          </div>
+
+          <div class="expertise-card p-6 rounded-2xl bg-slate-900/70 border soft-border">
+            <div class="text-2xl">🌐</div>
+            <h3 class="mt-4 font-bold text-white">Visualization &amp; Deployment</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-6">
+              Streamlit • Plotly • Interactive Dashboards • Git • GitHub • LaTeX
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURED PROJECTS
+    ========================================================== -->
+    <section id="projects" class="py-20 sm:py-24 bg-slate-900/45 border-y border-slate-800/70 px-5 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Featured Work</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white">
+              Projects where models meet real-world problems.
+            </h2>
+            <p class="mt-4 max-w-2xl text-slate-400 leading-7">
+              A selection of analytical systems, optimization models, and interactive applications built from practical problem statements.
+            </p>
+          </div>
+
+          <a
+            href="https://github.com/rasindupramith-oss"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition whitespace-nowrap"
+          >
+            View all repositories →
+          </a>
+        </div>
+
+        <!-- Flagship projects -->
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- LankaFlood -->
+          <article class="project-card rounded-3xl bg-slate-950/80 border border-cyan-500/40 p-6 sm:p-7 flex flex-col">
+            <div class="flex items-center justify-between gap-3">
+              <span class="px-3 py-1 text-xs font-bold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                Live • Climate Risk
+              </span>
+              <span class="text-[11px] text-slate-500">Python • Streamlit • SciPy</span>
+            </div>
+
+            <h3 class="mt-5 text-xl font-bold text-white">🌧️ LankaFlood-AI</h3>
+            <p class="mt-1 text-sm font-semibold text-cyan-300">National Flood &amp; Extreme Weather Risk Engine</p>
+
+            <p class="mt-4 text-sm text-slate-400 leading-7">
+              Built a national flood and extreme-weather risk analysis system for Sri Lanka using Extreme Value Theory, antecedent rainfall, and soil-moisture indicators across all 25 administrative districts.
+            </p>
+
+            <div class="mt-5 grid grid-cols-3 gap-2">
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">25</div>
+                <div class="text-[10px] text-slate-500 mt-1">Districts</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">91K+</div>
+                <div class="text-[10px] text-slate-500 mt-1">District-Days</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">LIVE</div>
+                <div class="text-[10px] text-slate-500 mt-1">Web App</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-6">
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="https://sri-lanka-flood-risk-engine.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-semibold bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2.5 rounded-xl transition"
+                >
+                  Open Live Engine ↗
+                </a>
+                <a
+                  href="https://github.com/rasindupramith-oss/sri-lanka-flood-risk-engine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-2.5 transition"
+                >
+                  Source Code →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Route Optimizer -->
+          <article class="project-card rounded-3xl bg-slate-950/80 border border-cyan-500/20 p-6 sm:p-7 flex flex-col">
+            <div class="flex items-center justify-between gap-3">
+              <span class="px-3 py-1 text-xs font-bold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                Operations Research
+              </span>
+              <span class="text-[11px] text-slate-500">Python • TSP • Optimization</span>
+            </div>
+
+            <h3 class="mt-5 text-xl font-bold text-white">🚚 Western Province Route Optimizer</h3>
+            <p class="mt-1 text-sm font-semibold text-cyan-300">Express Delivery Route Optimization</p>
+
+            <p class="mt-4 text-sm text-slate-400 leading-7">
+              Formulated and solved a Traveling Salesperson Problem to optimize a closed-loop delivery route across 8 major commercial hubs in Sri Lanka’s Western Province.
+            </p>
+
+            <div class="mt-5 grid grid-cols-3 gap-2">
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">41%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Distance ↓</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">91 km</div>
+                <div class="text-[10px] text-slate-500 mt-1">Saved / Run</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">15.4M</div>
+                <div class="text-[10px] text-slate-500 mt-1">Rs. Est. / Year</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-6">
+              <a
+                href="https://github.com/rasindupramith-oss/western-province-logistics-route-optimizer"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl transition"
+              >
+                View on GitHub ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Salary -->
+          <article class="project-card rounded-3xl bg-slate-950/80 border border-emerald-500/20 p-6 sm:p-7 flex flex-col">
+            <div class="flex items-center justify-between gap-3">
+              <span class="px-3 py-1 text-xs font-bold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                Live • Financial Analytics
+              </span>
+              <span class="text-[11px] text-slate-500">Streamlit • Plotly • IRD</span>
+            </div>
+
+            <h3 class="mt-5 text-xl font-bold text-white">💼 Sri Lanka Salary Simulator</h3>
+            <p class="mt-1 text-sm font-semibold text-emerald-300">APIT Tax &amp; Take-Home Pay</p>
+
+            <p class="mt-4 text-sm text-slate-400 leading-7">
+              Built an interactive salary and personal-finance simulator modelling APIT, EPF/ETF contributions, take-home pay, and employer cost using Sri Lankan tax rules.
+            </p>
+
+            <div class="mt-5 grid grid-cols-3 gap-2">
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">APIT</div>
+                <div class="text-[10px] text-slate-500 mt-1">Progressive Tax</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">EPF</div>
+                <div class="text-[10px] text-slate-500 mt-1">8% / 12%</div>
+              </div>
+              <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                <div class="text-lg font-extrabold text-white">LIVE</div>
+                <div class="text-[10px] text-slate-500 mt-1">Interactive App</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-6">
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="https://sri-lanka-salary-tax-simulator.streamlit.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl transition"
+                >
+                  Open Live App ↗
+                </a>
+                <a
+                  href="https://github.com/rasindupramith-oss/sri-lanka-salary-tax-simulator"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-2.5 transition"
+                >
+                  Source Code →
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- More projects -->
+        <div class="mt-16">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-indigo-400">More Projects</p>
+              <h3 class="mt-2 text-2xl font-bold text-white">Breadth across analytics, modelling, and optimization.</h3>
+            </div>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Customer Churn -->
+            <article class="project-card rounded-3xl bg-slate-950/70 border soft-border p-6 flex flex-col">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 text-xs font-bold rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Predictive Analytics</span>
+                <span class="text-[11px] text-slate-500">Python • Logistic Regression</span>
+              </div>
+              <h3 class="mt-5 text-xl font-bold text-white">📊 Customer Churn Prediction</h3>
+              <p class="mt-1 text-sm font-semibold text-indigo-300">Retention Analytics</p>
+              <p class="mt-4 text-sm text-slate-400 leading-7">
+                Built an end-to-end logistic-regression pipeline to identify customers at risk of churn and interpret the factors associated with retention and attrition.
+              </p>
+              <div class="mt-5 grid grid-cols-3 gap-2">
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">20</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Variables</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">80.62%</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Accuracy</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">0.8422</div>
+                  <div class="text-[10px] text-slate-500 mt-1">ROC-AUC</div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <a
+                  href="https://lnkd.in/g_pUG4Tp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-xs font-semibold text-slate-300 hover:text-indigo-300 transition"
+                >
+                  Explore Project →
+                </a>
+              </div>
+            </article>
+
+            <!-- Moneyball -->
+            <article class="project-card rounded-3xl bg-slate-950/70 border soft-border p-6 flex flex-col">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 text-xs font-bold rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Mathematical Programming</span>
+                <span class="text-[11px] text-slate-500">BILP • SciPy • HiGHS</span>
+              </div>
+              <h3 class="mt-5 text-xl font-bold text-white">🏏 Moneyball Sri Lanka</h3>
+              <p class="mt-1 text-sm font-semibold text-indigo-300">T20 Player Impact &amp; XI Optimization</p>
+              <p class="mt-4 text-sm text-slate-400 leading-7">
+                Used Binary Integer Linear Programming and international ball-by-ball cricket data to formulate a model-based Sri Lankan T20 XI selection problem.
+              </p>
+              <div class="mt-5 grid grid-cols-3 gap-2">
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">225</div>
+                  <div class="text-[10px] text-slate-500 mt-1">T20Is</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">52.4K+</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Deliveries</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">BILP</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Optimization</div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <a
+                  href="https://github.com/rasindupramith-oss/sri-lanka-cricket-analytics-moneyball"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-xs font-semibold text-slate-300 hover:text-indigo-300 transition"
+                >
+                  View on GitHub ↗
+                </a>
+              </div>
+            </article>
+
+            <!-- Gold -->
+            <article class="project-card rounded-3xl bg-slate-950/70 border soft-border p-6 flex flex-col">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 text-xs font-bold rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">Time Series</span>
+                <span class="text-[11px] text-slate-500">ARIMA • Box-Jenkins • Python</span>
+              </div>
+              <h3 class="mt-5 text-xl font-bold text-white">📈 Financial Time-Series Forecasting</h3>
+              <p class="mt-1 text-sm font-semibold text-purple-300">Daily Gold Prices</p>
+              <p class="mt-4 text-sm text-slate-400 leading-7">
+                Applied Box–Jenkins ARIMA modelling to daily gold prices, including stationarity testing, model selection, out-of-sample evaluation, and residual diagnostics.
+              </p>
+              <div class="mt-5 grid grid-cols-3 gap-2">
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">5+ yrs</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Daily Data</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">60-day</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Test Set</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">8.26%</div>
+                  <div class="text-[10px] text-slate-500 mt-1">MAPE</div>
+                </div>
+              </div>
+              <div class="pt-6">
+                <a
+                  href="https://github.com/rasindupramith-oss/gold-price-forecasting-arima"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-xs font-semibold text-slate-300 hover:text-purple-300 transition"
+                >
+                  View on GitHub ↗
+                </a>
+              </div>
+            </article>
+
+            <!-- Tourism -->
+            <article class="project-card rounded-3xl bg-slate-950/70 border soft-border p-6 flex flex-col">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 text-xs font-bold rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Public Data</span>
+                <span class="text-[11px] text-slate-500">Streamlit • Plotly • Python</span>
+              </div>
+              <h3 class="mt-5 text-xl font-bold text-white">🌴 The Great Comeback</h3>
+              <p class="mt-1 text-sm font-semibold text-cyan-300">Sri Lanka Tourism Recovery Dashboard</p>
+              <p class="mt-4 text-sm text-slate-400 leading-7">
+                Interactive dashboard exploring Sri Lanka’s tourism recovery through arrivals, source-market dynamics, seasonality patterns, and user-driven filters.
+              </p>
+              <div class="mt-5 grid grid-cols-3 gap-2">
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">2022–26</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Study Period</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">LIVE</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Dashboard</div>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-3 text-center">
+                  <div class="text-lg font-extrabold text-white">Plotly</div>
+                  <div class="text-[10px] text-slate-500 mt-1">Visualization</div>
+                </div>
+              </div>
+              <div class="pt-6 flex flex-wrap gap-4">
+                <a
+                  href="https://sri-lanka-tourism-analytics.streamlit.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition"
+                >
+                  Open Live Dashboard ↗
+                </a>
+                <a
+                  href="https://github.com/rasindupramith-oss/sri-lanka-tourism-dashboard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex text-xs font-semibold text-slate-300 hover:text-white transition"
+                >
+                  GitHub →
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EDUCATION & DIRECTION
+    ========================================================== -->
+    <section id="education" class="py-20 sm:py-24 px-5 sm:px-6">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-6">
+
+        <div class="timeline-card rounded-3xl bg-slate-900/70 border soft-border p-7 sm:p-8">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Education</p>
+
+          <div class="mt-6 flex gap-4">
+            <div class="w-12 h-12 shrink-0 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-xl">
+              🎓
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-white">University of Colombo</h2>
+              <p class="mt-1 text-sm text-indigo-300 font-semibold">BSc (Hons) in Applied Statistics</p>
+              <p class="mt-2 text-sm text-slate-400">Faculty of Science</p>
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Relevant areas</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="skill-pill">Statistical Inference</span>
+              <span class="skill-pill">Applied Modelling</span>
+              <span class="skill-pill">Time Series</span>
+              <span class="skill-pill">Statistical Computing</span>
+              <span class="skill-pill">Operations Research</span>
+              <span class="skill-pill">Machine Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-card rounded-3xl bg-gradient-to-br from-indigo-500/10 via-slate-900/70 to-cyan-500/10 border border-indigo-500/20 p-7 sm:p-8">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-indigo-300">Open to Opportunities</p>
+
+          <h2 class="mt-4 text-2xl sm:text-3xl font-bold text-white">
+            Looking to turn coursework into industry experience.
+          </h2>
+
+          <p class="mt-4 text-slate-400 leading-7">
+            I’m currently seeking <span class="text-slate-200 font-semibold">Industrial Placement / Internship opportunities</span> where I can apply statistical modelling, analytical thinking, and programming to real-world problems.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="skill-pill">Data Analytics</span>
+            <span class="skill-pill">Data Science</span>
+            <span class="skill-pill">Operations Research</span>
+            <span class="skill-pill">Predictive Analytics</span>
+          </div>
+
+          <div class="mt-7">
+            <a
+              href="https://www.linkedin.com/in/rasindu-pramith"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition"
+            >
+              Connect on LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================== -->
+    <footer id="contact" class="py-20 bg-slate-950 border-t border-slate-800/80">
+      <div class="max-w-5xl mx-auto px-5 sm:px-6 text-center">
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-cyan-400">Contact</p>
+
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-white">
+          Let’s Build Something Useful.
+        </h2>
+
+        <p class="mt-4 max-w-2xl mx-auto text-slate-400 leading-7">
+          Interested in data, modelling, optimization, or practical analytical problems? I’m always open to meaningful conversations, collaborations, and industry opportunities.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href="https://www.linkedin.com/in/rasindu-pramith"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition"
+          >
+            LinkedIn ↗
+          </a>
+
+          <a
+            href="https://github.com/rasindupramith-oss"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold transition"
+          >
+            GitHub ↗
+          </a>
+
+          <a
+            href="https://www.kaggle.com/rasindupramith"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold transition"
+          >
+            Kaggle ↗
+          </a>
+        </div>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-slate-500">
+          <a href="https://sri-lanka-flood-risk-engine.streamlit.app/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">LankaFlood-AI</a>
+          <a href="https://sri-lanka-salary-tax-simulator.streamlit.app" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-300 transition">APIT Salary Simulator</a>
+          <a href="https://sri-lanka-tourism-analytics.streamlit.app" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-300 transition">Tourism Dashboard</a>
+        </div>
+
+        <p class="mt-12 text-xs text-slate-600">
+          © 2026 Rasindu Pramith • Faculty of Science, University of Colombo
+        </p>
+        <p class="mt-2 text-xs text-slate-700">
+          Built with HTML &amp; Tailwind CSS.
+        </p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- =========================================================
+       SMALL INTERACTIONS
+  ========================================================== -->
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton?.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("is-open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      menuButton.innerHTML = isOpen ? '<span class="text-lg">✕</span>' : '<span class="text-lg">☰</span>';
+    });
+
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+        menuButton.innerHTML = '<span class="text-lg">☰</span>';
+      });
+    });
+  </script>
+
+</body>
+</html>
